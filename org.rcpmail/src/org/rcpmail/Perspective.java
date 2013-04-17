@@ -13,6 +13,7 @@ package org.rcpmail;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
+import org.rcpmail.favorites.FavoritesView;
 
 public class Perspective implements IPerspectiveFactory {
 
@@ -24,6 +25,12 @@ public class Perspective implements IPerspectiveFactory {
 		IFolderLayout folder = layout.createFolder("messages", IPageLayout.TOP, 0.5f, editorArea);
 		folder.addPlaceholder(View.ID + ":*");
 		folder.addView(View.ID);
+		
+		/*
+		 * Add your StandAloneView to the application
+		 */
+		layout.addStandaloneView(FavoritesView.ID, true, IPageLayout.BOTTOM, 0.20f, editorArea);
+		
 		
 		layout.getViewLayout(NavigationView.ID).setCloseable(false);
 	}

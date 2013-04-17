@@ -35,6 +35,13 @@
             class="org.rcpmail.NavigationView"
             id="org.rcpmail.navigationView">
       </view>
+      <view
+            class="org.rcpmail.favorites.FavoritesView"
+            icon="icons/sample.gif"
+            id="org.rcpmail.favoritesView"
+            name="Favorites"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
