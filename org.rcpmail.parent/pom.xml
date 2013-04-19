@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.rcpmail</groupId>
+  <artifactId>org.rcpmail.parent</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+  	<tycho-version>0.16.0</tycho-version>
+  </properties>
+  
+  <repositories>
+  <!-- For successfully building an Eclipse plugin, many prebuild binaries 
+  and dependencies such as org.eclipse.core.runtime or org.eclipse.ui 
+  have to be taken into account that provide the context of the build. -->
+  	<repository>
+  		<id>eclipse-helios</id>
+  		<layout>p2</layout>
+  		<url>http://download.eclipse.org/releases/helios</url>
+  	</repository>
+  </repositories>
+  
+  <modules>
+    <module>../org.rcpmail</module>
+    <module>../org.rcpmail.fragment.test</module>
+    <module>../org.rcpmail.fragment.ui.test</module>
+  </modules>
+  <build>
+    <plugins>
+	    <!-- In order to enable Tycho for the Maven build, 
+	  	we are required to add the tycho-maven-plugin from 
+	  	group org.eclipse.tycho as an extension of the build process. 
+	  	It is generally enough to specify the details of an Maven plugin 
+	  	as it will be automatically downloaded and cached when the build is invoked. 
+	  	-->
+      	<plugin>
+	        <groupId>org.eclipse.tycho</groupId>
+	        <artifactId>tycho-maven-plugin</artifactId>
+	        <version>${tycho-version}</version>
+	       	<extensions>true</extensions>
+    	</plugin>
+    	<!-- Tycho packaging plugin needs configuration to know 
+    	which target environment to build the product for.
+    	 -->
+	    <plugin>
+	  		<groupId>org.eclipse.tycho</groupId>
+	  		<artifactId>target-platform-configuration</artifactId>
+	 		<version>${tycho-version}</version>
+	  		<configuration>
+	    		<environments>
+	      			<environment>
+		              <os>linux</os>
+		              <ws>gtk</ws>
+		              <arch>x86</arch>
+		            </environment>
+		            <environment>
+		              <os>win32</os>
+		              <ws>win32</ws>
+		              <arch>x86</arch>
+		            </environment>
+	    		</environments>
+	  		</configuration>
+		</plugin>    
+    </plugins>
+  </build>
+</project>
